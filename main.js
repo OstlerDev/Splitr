@@ -46,6 +46,8 @@ app.on('ready', function() {
   })
 
   ipc.on("new-splits", function(event){
+    if (edit != null) 
+      return;
     edit = new BrowserWindow({width: 800, height: 600});
 
     edit.loadURL('file://' + __dirname + '/html/edit.html');
@@ -63,6 +65,8 @@ app.on('ready', function() {
   })
 
   ipc.on("open", function(event){
+    if (load != null) 
+      return;
     load = new BrowserWindow({width: 800, height: 600});
 
     load.loadURL('file://' + __dirname + '/html/load.html');

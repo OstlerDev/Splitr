@@ -12,5 +12,11 @@ ElectronSplit is a Multi-platform Live Split application created out of the lack
 - [ ] Split Exporting
 - [ ] Import from Wsplit and other formats
 
+# Demo images
+![](http://i.imgur.com/Wt1vrDS.png)
+![](http://i.imgur.com/Ze0R0m6.png)
+![](http://i.imgur.com/pH18mB1.png)
+![](http://i.imgur.com/ckK9OOF.png)
+
 # Credits
-Quite a few HTML and CSS elements were taken from (Ylorant's Splitty web app)[https://github.com/ylorant/splitty].
+Most of the HTML, CSS, and Javascript came from (Ylorant's Splitty web app)[https://github.com/ylorant/splitty]. I took the different parts of the application and sectioned them out into a standalone application that was cross platform rather than a web app. This means that in the future we can take more advantage of saving, loading, and especially generating a page that browsersource (on OBS Studio) can use. No longer will people on Mac and Linux be confined to using software that is only partially functional.
