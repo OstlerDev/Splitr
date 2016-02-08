@@ -1,0 +1,382 @@
+/* Base Styles */
+
+    #wrapper 
+    {
+        padding-left: 0;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    #wrapper.active 
+    {
+        padding-left: 0px;
+    }
+
+    #timer-wrapper 
+    {
+        z-index: 1000;
+        position: fixed;
+        left: 300px;
+        width: 0;
+        height: 100%;
+        margin-left: -300px;
+        overflow-y: auto;
+        background: #121212;
+        color: #999;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    #wrapper 
+    {
+        padding-left: 00px;
+    }
+
+    #wrapper.active 
+    {
+        padding-left: 0;
+    }
+
+    #timer-wrapper 
+    {
+        width: 300px;
+    }
+
+    
+    #wrapper.active #timer-wrapper 
+    {
+        width: 300px;
+    }
+
+    #page-content-wrapper 
+    {
+        width: 100%;
+        position: absolute;
+        padding: 15px;
+    }
+
+    #wrapper.active #page-content-wrapper 
+    {
+        position: absolute;
+        margin-right: 0px;
+    }
+
+    /* Screen size is more than 768 pixels -> we show the timer by default */
+    @media(min-width:768px) {
+        
+        #wrapper.active #timer-wrapper 
+        {
+            width: 0;
+        }
+
+        #page-content-wrapper 
+        {
+            padding: 20px;
+            position: relative;
+        }
+
+        #wrapper.active #page-content-wrapper 
+        {
+            position: relative;
+            margin-right: 0;
+        }
+    }
+
+    .text-justify
+    {
+        text-align: justify;
+    }
+
+/* Timer Styles */
+    
+    #timer-wrapper
+    {
+        font-family: "Roboto";
+    }
+
+    #timer-wrapper .timer-title
+    {
+        padding: 0px 20px;
+        padding-right: 80px;
+        height: 65px;
+        width: 300px;
+        position: relative;
+
+        line-height: 65px;
+    }
+
+    #timer-wrapper .timer-title #run-count
+    {
+        display: block;
+        position: absolute;
+        height: 65px;
+        width: 60px;
+        right: 10px;
+        top: 0px;
+
+        text-align: right;
+        line-height: 65px;
+    }
+
+    #timer-wrapper .timer-title span
+    {
+        display: inline-block;
+
+        line-height: 1.3em;
+        vertical-align: middle;
+    }
+
+    #timer-splits,
+    #timer-wrapper .timer-title,
+    #run-globals
+    {
+        width: 100%;
+        padding: 0px 20px;
+        border-collapse: separate;
+    }
+    
+    #timer-splits
+    {
+        position: relative;
+        top: 0px;
+    }
+
+    #timer-splits-container
+    {
+        min-height: 200px;
+        overflow: hidden;
+
+        border-top: 1px solid #444;
+        border-bottom: 1px solid #444;
+    }
+    
+    #timer-splits tr.current
+    {
+        position: relative;
+        background: #222;
+        color: white;
+    }
+    
+    #timer-splits tr td
+    {
+        text-align: right;
+    }
+
+    #timer-splits tr td:first-child
+    {
+        text-align: left;
+    }
+
+    #timer-splits tr td.time
+    {
+        border-right: 10px solid transparent;
+    }
+
+    #timer-wrapper .time.ahead.split-ahead { color: #15BC33; }
+    #timer-wrapper .time.ahead.split-late { color: #AEE711; }
+    #timer-wrapper .time.late.split-ahead { color: #E79D11; }
+    #timer-wrapper .time.late.split-late { color: #E71111; }
+    #timer-wrapper .time.split-gold { color: #FFDF00; }
+
+    #timer-splits tr td:first-child,
+    #run-globals tr td:first-child
+    {
+        width: 100%;
+    }
+
+    #run-globals
+    {
+        margin-top: 10px;
+    }
+
+    #run-globals tr td.time
+    {
+        border: 0px;
+        text-align: right;
+    }
+
+    #run-globals #global-time
+    {
+        font-size: 48px;
+        font-weight: bold;
+        text-align: right;
+    }
+    
+    #timer-split-handle
+    {
+        color: transparent;
+        background-color: transparent;
+    }
+    
+    #timer-split-handle:hover
+    {
+        background-color: #444;
+        color: #888;
+    }
+    
+    #timer-split-handle:active
+    {
+        background-color: transparent;
+        color: transparent;
+    }
+    
+/* Timer handle, styled in timer style */
+    
+    #timer-split-handle
+    {
+        position: relative;
+        top: -1px;
+        display: block;
+        width: 100%;
+        height: 3px;
+        float: left;
+        z-index: 10;
+        
+        cursor: ns-resize;
+        font-size: 0px;
+        line-height: 0px;
+        text-align: center;
+        font-weight: bold;
+
+        transition: all 0.1s linear;
+        transition-property: background-color, color, height, top, font-size, line-height;
+    }
+    
+    #timer-split-handle:hover,
+    #timer-split-handle:active
+    {
+        height: 10px;
+        top: -5px;
+        font-size: 16px;
+        line-height: 11px;
+    }
+
+/* Page Styles */
+
+.page
+{
+    display: none;
+}
+
+.page.active
+{
+    display: block;
+}
+
+.ralign
+{
+    text-align: right;
+}
+
+.inline-block
+{
+    display: inline-block;
+}
+
+.button-bar
+{
+    margin-top: 20px;
+}
+
+.button-bar .well 
+{
+    margin-right: 20px;
+}
+
+.button-bar .btn
+{
+    display: inline-block;
+    height: 125px;
+    width: 125px;
+    position: relative;
+
+    line-height: 100px;
+}
+
+.button-bar .btn span
+{
+    display: block;
+    text-align: center;
+    position: absolute;
+    bottom: 6px;
+    left: 12px;
+    right: 12px;
+
+    line-height: 1.42857;
+}
+
+.button-bar .btn i
+{
+    font-size: 32px;
+}
+
+.split-gold {
+    -webkit-animation: goldanimation 1s ease;
+    -moz-animation: goldanimation 1s ease;
+    -o-animation: goldanimation 1s ease;
+}
+
+@-webkit-keyframes goldanimation {
+    0%   { background-color: rgba(255, 224, 0, 0); }
+    1%   { background-color: rgba(255, 224, 0, 1); }
+    100% { background-color: rgba(255, 224, 0, 0); }
+}
+
+@-moz-keyframes goldanimation {
+    0%   { background-color: rgba(255, 224, 0, 0); }
+    1%   { background-color: rgba(255, 224, 0, 1); }
+    100% { background-color: rgba(255, 224, 0, 0); }
+}
+
+@-o-keyframes goldanimation {
+    0%   { background-color: rgba(255, 224, 0, 0); }
+    1%   { background-color: rgba(255, 224, 0, 1); }
+    100% { background-color: rgba(255, 224, 0, 0); }
+}
+
+div.crouton-notification
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+    z-index: 10000;
+}
+
+div.crouton-confirm { background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6; }
+div.crouton-error { background-color: #f2dede; color: #a94442; border-color: #ebccd1; }
+div.crouton-info { background-color: #d9edf7; color: #31708f; border-color: #bce8f1; }
+
+.my-tooltip
+{
+    display: inline-block;
+    position: relative;
+}
+
+.my-tooltip-content
+{
+    display: none;
+}
+
+.my-tooltip-content.active
+{
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    padding: 5px;
+    width: 200px;
+    font-size: 11px;
+    line-height: 14px;
+    white-space: normal;
+    
+    border-radius: 3px;
+    color: white;
+    background: rgba(0, 0, 0, 1);
+    
+    z-index: 10;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ElectronSplit</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS -->
+    <link href="css/crouton.css" rel="stylesheet">
+    <link href="css/splitty.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Timer -->
+        <div id="timer-wrapper">
+            <div class="timer-title">
+                <span id="run-count">0</span>
+                <span id="run-title">
+                    -
+                </span>
+            </div>
+            
+            <div id="timer-splits-container" class="viewport">
+                <table id="timer-splits">
+                    <tr>
+                        <td>-</td>
+                        <td class="time"></td>
+                        <td class="ref">-</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="timer-split-handle">•••</div>
+            <table id="run-globals">
+            <tr>
+                <td>Previous segment</td>
+                <td id="previous-segment" class="time" title="Difference with PB on previous segment">-</td>
+            </tr>
+            <tr>
+                <td>Sum of Bests</td>
+                <td id="sum-of-bests" class="time split-gold">-</td>
+            </tr>
+            <tr>
+                <td colspan="2" id="global-time">0:00.<small>0</small></td>
+            </tr>
+            </table>
+            <!-- <div class="action-buttons">
+                <a class="btn" data-action="toggle_timer_display"><i class="glyphicon glyphicon-resize-full"></i></a>
+            </div> -->
+        </div>
+        <!-- /#timer-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/ki.min.js"></script>
+    <script src="js/lib/ki.extend.min.js"></script>
+    <script src="js/lib/crouton.js"></script>
+    <script src="js/lib/tooltip.js"></script>
+    <script src="js/gamepad.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/splits.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Splits Editor</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS -->
+    <link href="css/crouton.css" rel="stylesheet">
+    <link href="css/splitty.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="page-edit-timer" class="page col-lg-12 active">
+                        <h1>Splits Editor</h1>
+                        <form id="edit-timer-form" class="form-horizontal">
+                            
+                            <div class="form-group">
+                                <label for="form-edit-timer-name" class="col-sm-2 control-label">Timer name:</label>
+                                <div class="col-sm-5 input-group">
+                                    <input type="text" id="form-edit-timer-name" class="form-control" placeholder="" autocomplete="on" />
+                                    <span class="input-group-addon">
+                                        <span class="my-tooltip">
+                                            <i class="my-tooltip-icon glyphicon glyphicon-question-sign"></i>
+                                            <span class="my-tooltip-content">
+                                                The name shown in the list of your saved timers. It will not be shown in the timer view.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-edit-game-name" class="col-sm-2 control-label">Game/category name:</label>
+                                <div class="col-sm-5 input-group">
+                                    <input type="text" id="form-edit-game-name" class="form-control" placeholder="e.g. The Legend of Zelda: Ocarina of Time 100%" autocomplete="on" />
+                                    <span class="input-group-addon">
+                                        <span class="my-tooltip">
+                                            <i class="my-tooltip-icon glyphicon glyphicon-question-sign"></i>
+                                            <span class="my-tooltip-content">
+                                                The name that will be shown on the top of the timer. Usually, the game name with the run category.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Timer type:</label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox">
+                                        <label for="form-edit-timer-type-rta"><input type="radio" id="form-edit-timer-type-rta" name="timer-type" value="rta" checked /> Real Time Attack</label>
+                                         <label for="form-edit-timer-type-manual"><input type="radio" id="form-edit-timer-type-manual" name="timer-type" value="manual" /> Manual</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset id="form-edit-timer-split-list">
+                                <legend>Splits</legend>
+                                
+                                <!-- Split form segment template -->
+                                <div class="form-group timer-split hidden" id="edit-timer-split-template">
+                                    <div class="col-sm-4 col-lg-6">
+                                        <input type="text" class="form-control split-name" name="split[$i]" placeholder="Split name" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-reference" name="reference_time[$i]" placeholder="Reference time (cumulative)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-gold" name="reference_time[$i]" placeholder="Reference time (cumulative)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 btn-group">
+                                        <a class="btn btn-default" title="Move split up" data-action="edit_timer_move_up">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                        </a>
+                                        <a class="btn btn-default" title="Move split down" data-action="edit_timer_move_down">
+                                            <i class="glyphicon glyphicon-arrow-down"></i>
+                                        </a>
+                                        <a class="btn btn-danger" title="Delete split" data-action="edit_timer_remove_split">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group timer-split">
+                                    <div class="col-sm-4 col-lg-6">
+                                        <input type="text" class="form-control split-name" name="split[0]" placeholder="Split name" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-reference" name="reference_time[0]" placeholder="Reference time (cumulative)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-gold" name="gold_time[0]" placeholder="Gold time (split only)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 btn-group">
+                                        <a class="btn btn-default" title="Move split up" data-action="edit_timer_move_up">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                        </a>
+                                        <a class="btn btn-default" title="Move split down" data-action="edit_timer_move_down">
+                                            <i class="glyphicon glyphicon-arrow-down"></i>
+                                        </a>
+                                        <a class="btn btn-danger" title="Delete split" data-action="edit_timer_remove_split">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="btn btn-success" data-action="edit_timer_add_split">
+                                    <i class="glyphicon glyphicon-plus"></i> Add split
+                                </a>
+                            </fieldset>
+                            <hr />
+                            <div>
+                                <a class="btn btn-primary" data-action="edit_timer_submit"><i class="glyphicon glyphicon-floppy-disk"></i> Save</a>
+                                <a class="btn btn-default" data-action="edit_timer_cancel">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/ki.min.js"></script>
+    <script src="js/lib/ki.extend.min.js"></script>
+    <script src="js/lib/crouton.js"></script>
+    <script src="js/lib/tooltip.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/gamepad.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

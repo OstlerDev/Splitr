@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ElectronSplit</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS -->
+    <link href="css/crouton.css" rel="stylesheet">
+    <link href="css/splitty.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Timer -->
+        <div id="timer-wrapper">
+            <div class="timer-title">
+                <span id="run-count">0</span>
+                <span id="run-title">
+                    -
+                </span>
+            </div>
+            
+            <div id="timer-splits-container" class="viewport">
+                <table id="timer-splits">
+                    <tr>
+                        <td>-</td>
+                        <td class="time"></td>
+                        <td class="ref">-</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="timer-split-handle">•••</div>
+            <table id="run-globals">
+            <tr>
+                <td>Previous segment</td>
+                <td id="previous-segment" class="time" title="Difference with PB on previous segment">-</td>
+            </tr>
+            <tr>
+                <td>Sum of Bests</td>
+                <td id="sum-of-bests" class="time split-gold">-</td>
+            </tr>
+            <tr>
+                <td colspan="2" id="global-time">0:00.<small>0</small></td>
+            </tr>
+            </table>
+            <!-- <div class="action-buttons">
+                <a class="btn" data-action="toggle_timer_display"><i class="glyphicon glyphicon-resize-full"></i></a>
+            </div> -->
+        </div>
+        <!-- /#timer-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="page-main-menu" class="page">
+                        <div class="col-lg-12 title">
+                            <h1>Splitty</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-justify">
+                                <p>
+                                    WebSplit is a tiny full HTML5-JS speedrun timer that you can run in your browser. 
+                                    It'll allow to time your runs, create splits, 
+                                    measure your performance compared to previous runs in real time and more to come!
+                                </p>
+                                <p>
+                                    To begin creating a new timer, click on the <code>New Timer</code> button. 
+                                    If you already have a saved one, click on the <code>Load Timer</code> button.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row button-bar">
+                            <div class="col-lg-12 text-center">
+                                <div class="well inline-block">
+                                    <a class="btn btn-success btn-block btn-lg" data-page="edit-timer">
+                                        <i class="glyphicon glyphicon-file"></i>
+                                        <span>New Timer</span>
+                                    </a>
+                                </div>
+                                <div class="well inline-block">
+                                    <a class="btn btn-primary btn-block btn-lg" data-page="load-timer">
+                                        <i class="glyphicon glyphicon-folder-open"></i>
+                                        <span>Load Timer</span>
+                                    </a>
+                                </div>
+                                <div class="well inline-block">
+                                    <a class="btn btn-primary btn-block btn-lg" data-page="import-timer">
+                                        <i class="glyphicon glyphicon-log-in"></i>
+                                        <span>Import Timer</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="page-import-timer" class="page col-lg-12">
+                        <h1>Import timer</h1>
+                        <form id="load-timer-form" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="form-import-timer-file" class="col-sm-3 control-label">Choose the timer file you want to import:</label>
+                                <div class="col-sm-5">
+                                    <input type="file" class="form-control" id="form-import-timer-file" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <a class="btn btn-primary" data-action="import_timer_submit"><i class="glyphicon glyphicon-log-in"></i>&nbsp; Import</a>
+                                <a class="btn btn-default" data-page="main-menu">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="page-load-timer" class="page col-lg-12">
+                        <h1>Load timer</h1>
+                        <form id="load-timer-form" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="form-load-timer-timer-name" class="col-sm-3 control-label">Select the timer you want to load:</label>
+                                <div class="col-sm-4">
+                                    <select id="form-load-timer-timer-name" class="form-control">
+                                        <option value="">---</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button class="btn btn-danger" data-action="delete_timer">Delete this timer</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <a class="btn btn-primary" data-action="load_timer_submit"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Load</a>
+                                <a class="btn btn-default" data-page="main-menu">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="page-edit-timer" class="page col-lg-12">
+                        <h1>Edit timer</h1>
+                        <form id="edit-timer-form" class="form-horizontal">
+                            
+                            <div class="form-group">
+                                <label for="form-edit-timer-name" class="col-sm-2 control-label">Timer name:</label>
+                                <div class="col-sm-5 input-group">
+                                    <input type="text" id="form-edit-timer-name" class="form-control" placeholder="" autocomplete="on" />
+                                    <span class="input-group-addon">
+                                        <span class="my-tooltip">
+                                            <i class="my-tooltip-icon glyphicon glyphicon-question-sign"></i>
+                                            <span class="my-tooltip-content">
+                                                The name shown in the list of your saved timers. It will not be shown in the timer view.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-edit-game-name" class="col-sm-2 control-label">Game/category name:</label>
+                                <div class="col-sm-5 input-group">
+                                    <input type="text" id="form-edit-game-name" class="form-control" placeholder="e.g. The Legend of Zelda: Ocarina of Time 100%" autocomplete="on" />
+                                    <span class="input-group-addon">
+                                        <span class="my-tooltip">
+                                            <i class="my-tooltip-icon glyphicon glyphicon-question-sign"></i>
+                                            <span class="my-tooltip-content">
+                                                The name that will be shown on the top of the timer. Usually, the game name with the run category.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Timer type:</label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox">
+                                        <label for="form-edit-timer-type-rta"><input type="radio" id="form-edit-timer-type-rta" name="timer-type" value="rta" checked /> Real Time Attack</label>
+                                         <label for="form-edit-timer-type-manual"><input type="radio" id="form-edit-timer-type-manual" name="timer-type" value="manual" /> Manual</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <fieldset id="form-edit-timer-split-list">
+                                <legend>Splits</legend>
+                                
+                                <!-- Split form segment template -->
+                                <div class="form-group timer-split hidden" id="edit-timer-split-template">
+                                    <div class="col-sm-4 col-lg-6">
+                                        <input type="text" class="form-control split-name" name="split[$i]" placeholder="Split name" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-reference" name="reference_time[$i]" placeholder="Reference time (cumulative)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-gold" name="reference_time[$i]" placeholder="Reference time (cumulative)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 btn-group">
+                                        <a class="btn btn-default" title="Move split up" data-action="edit_timer_move_up">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                        </a>
+                                        <a class="btn btn-default" title="Move split down" data-action="edit_timer_move_down">
+                                            <i class="glyphicon glyphicon-arrow-down"></i>
+                                        </a>
+                                        <a class="btn btn-danger" title="Delete split" data-action="edit_timer_remove_split">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group timer-split">
+                                    <div class="col-sm-4 col-lg-6">
+                                        <input type="text" class="form-control split-name" name="split[0]" placeholder="Split name" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-reference" name="reference_time[0]" placeholder="Reference time (cumulative)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2">
+                                        <input type="text" class="form-control split-gold" name="gold_time[0]" placeholder="Gold time (split only)" />
+                                    </div>
+                                    <div class="col-sm-3 col-lg-2 btn-group">
+                                        <a class="btn btn-default" title="Move split up" data-action="edit_timer_move_up">
+                                            <i class="glyphicon glyphicon-arrow-up"></i>
+                                        </a>
+                                        <a class="btn btn-default" title="Move split down" data-action="edit_timer_move_down">
+                                            <i class="glyphicon glyphicon-arrow-down"></i>
+                                        </a>
+                                        <a class="btn btn-danger" title="Delete split" data-action="edit_timer_remove_split">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="btn btn-success" data-action="edit_timer_add_split">
+                                    <i class="glyphicon glyphicon-plus"></i> Add split
+                                </a>
+                            </fieldset>
+                            <hr />
+                            <div>
+                                <a class="btn btn-primary" data-action="edit_timer_submit"><i class="glyphicon glyphicon-floppy-disk"></i> Save</a>
+                                <a class="btn btn-default" data-action="edit_timer_cancel">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="page-timer-control" class="page col-lg-12">
+                        <div class="col-lg-12 title">
+                            <h1>Timer control</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row button-bar">
+                                    <div class="col-lg-12 text-center">
+                                        <div class="well inline-block">
+                                            <a class="btn disabled btn-primary btn-block btn-lg" id="control-button-back" data-action="timer_split_prev">
+                                                <i class="glyphicon glyphicon-backward"></i>
+                                                <span>Go back</span>
+                                            </a>
+                                        </div>
+                                        <div class="well inline-block">
+                                            <a class="btn btn-success btn-block btn-lg" id="control-button-play" data-action="timer_start_split">
+                                                <i class="glyphicon glyphicon-play"></i>
+                                                <span>Start</span>
+                                            </a>
+                                        </div>
+                                        <div class="well inline-block">
+                                            <a class="btn disabled btn-primary btn-block btn-lg" id="control-button-skip" data-action="timer_split_skip">
+                                                <i class="glyphicon glyphicon-forward"></i>
+                                                <span>Skip split</span>
+                                            </a>
+                                        </div>
+                                        <div class="well inline-block">
+                                            <a class="btn btn-danger btn-block btn-lg" id="control-button-reset" data-action="timer_stop_reset">
+                                                <i class="glyphicon glyphicon-refresh"></i>
+                                                <span>Reset</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-12 text-center">
+                                            <div class="well inline-block" id="control-done-actions">
+                                                <a class="btn btn-warning btn-block btn-lg" id="control-button-save" data-action="timer_save_splits">
+                                                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                                                    <span>Save Splits</span>
+                                                </a>
+                                            </div>
+                                            <div class="well inline-block" id="control-edit-actions">
+                                                <a class="btn btn-info btn-block btn-lg" id="control-button-edit" data-action="timer_edit_timer">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                    <span>Edit timer</span>
+                                                </a>
+                                            </div>
+                                            <div class="well inline-block">
+                                                <a class="btn btn-success btn-block btn-lg" id="control-button-export" data-action="timer_export_timer">
+                                                    <i class="glyphicon glyphicon-log-out"></i>
+                                                    <span>Export timer</span>
+                                                </a>
+                                            </div>
+                                            <div class="well inline-block">
+                                                <a class="btn btn-danger btn-block btn-lg" id="control-button-close" data-action="timer_close_timer">
+                                                    <i class="glyphicon glyphicon-eject"></i>
+                                                    <span>Close timer</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-justify">
+                                <p>
+                                    Now you've created or loaded your timer, and you're ready to play !
+                                    Just click on the <code>Start</code> button below to start the timer.
+                                    Then, you have 3 possible actions:
+                                </p>
+                                
+                                <ul>
+                                    <li>Tick time for a split (the most common thing you'll do)</li>
+                                    <li>Navigate splits (if you split too much or if you have to skip a split)</li>
+                                    <li>Reset the timer (if you restart your run)</li>
+                                </ul>
+                                
+                                <p>
+                                    With these actions, you should be able to manage your run quite easily.
+                                    Of course, if you're running, aiming and clicking on buttons is quite hard. To address this issue, you can also
+                                    use keyboard shortcuts to do these actions:
+                                </p>
+                                
+                                <ul>
+                                    <li>Use <code>Space</code> to start/split</li>
+                                    <li>Use <code>Down arrow</code> to skip</li>
+                                    <li>Use <code>Up arrow</code> to go back</li>
+                                    <li>Use <code>Backspace</code> to reset</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/ki.min.js"></script>
+    <script src="js/lib/ki.extend.min.js"></script>
+    <script src="js/lib/crouton.js"></script>
+    <script src="js/lib/tooltip.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/gamepad.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/actions.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

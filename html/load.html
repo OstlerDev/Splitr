@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Load Splits</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS -->
+    <link href="css/crouton.css" rel="stylesheet">
+    <link href="css/splitty.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="page-load-timer" class="page col-lg-12 active">
+                        <h1>Load timer</h1>
+                        <form id="load-timer-form" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="form-load-timer-timer-name" class="col-sm-3 control-label">Select the timer you want to load:</label>
+                                <div class="col-sm-4">
+                                    <select id="form-load-timer-timer-name" class="form-control">
+                                        <option value="">---</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button class="btn btn-danger" data-action="delete_timer">Delete this timer</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <a class="btn btn-primary" data-action="load_timer_submit"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Load</a>
+                                <a class="btn btn-default">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/ki.min.js"></script>
+    <script src="js/lib/ki.extend.min.js"></script>
+    <script src="js/lib/crouton.js"></script>
+    <script src="js/lib/tooltip.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/gamepad.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/load.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
