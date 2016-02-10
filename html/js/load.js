@@ -62,7 +62,7 @@ Actions.prototype.delete_timer = function()
 	var select = q("#form-load-timer-timer-name");
 	var selected_timer = select.options[select.selectedIndex].value;
 	
-	var confirm = confirm("Are you sure you want to delete this timer ?");
+	var confirm = confirm("Are you sure you want to delete this timer?");
 	
 	if(confirm && typeof localStorage != "undefined")
 	{

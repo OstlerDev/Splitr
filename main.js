@@ -12,6 +12,7 @@ var edit = null;
 var load = null;
 var timerControls = null;
 var importSplits = null;
+var preferences = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -80,6 +81,25 @@ app.on('ready', function() {
       // in an array if your app supports multi windows, this is the time
       // when you should delete the corresponding element.
       load = null;
+    });
+  })
+
+  ipc.on("preferences", function(event){
+    if (preferences != null) 
+      return;
+    preferences = new BrowserWindow({width: 400, height: 600});
+
+    preferences.loadURL('file://' + __dirname + '/html/preferences.html');
+
+    // Open the DevTools.
+    //preferences.webContents.openDevTools();
+
+    // Emitted when the window is closed.
+    preferences.on('closed', function() {
+      // Dereference the window object, usually you would store windows
+      // in an array if your app supports multi windows, this is the time
+      // when you should delete the corresponding element.
+      preferences = null;
     });
   })
 });

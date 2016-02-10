@@ -3,14 +3,19 @@ ElectronSplit is a Multi-platform Live Split application created out of the lack
 
 # Currently Implemented
 - [X] Basic Split functionality
+- [X] Preferences page
+
+# Planned
 - [ ] Delete splits from database
-- [ ] Save splits automatically on PB (settings page?)
+- [ ] Save splits automatically on PB 
 - [ ] Auto scroll splits.
 - [ ] Import splits
 - [ ] Edit Splits
 - [ ] Split Controller Window
 - [ ] Split Exporting
 - [ ] Import from Wsplit and other formats
+- [ ] Images with Splits
+- [ ] Customizable split height
 
 # Demo images
 ![](http://i.imgur.com/Wt1vrDS.png)

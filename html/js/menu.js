@@ -14,8 +14,9 @@ var template = [
         type: 'separator'
       },
       {
-        label: 'Services',
-        submenu: []
+        label: 'Preferences',
+        accelerator: 'Command+,',
+        click: function() { ipc.send("preferences"); }
       },
       {
         type: 'separator'
