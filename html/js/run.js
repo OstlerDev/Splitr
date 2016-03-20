@@ -6,6 +6,9 @@ function Run(timer)
 	this.split_times = [];
 	this.current_split = 0;
 	this.started = false;
+	this.newPB = false;
+	this.newGold = false;
+	this.prefs = new Preferences().getPrefs();
 }
 
 Run.prototype.start = function()
@@ -30,19 +33,31 @@ Run.prototype.split = function()
 	if(this.current_split > 0)
 		duration -= this.split_times[this.current_split - 1];
 	
-	//Check for PB
-	if(this.timer.splits[this.current_split].split_best == null || duration < this.timer.splits[this.current_split].split_best)
-	{
+	// Check for gold
+	if(this.timer.splits[this.current_split].split_best == null || duration < this.timer.splits[this.current_split].split_best){
 		this.timer.splits[this.current_split].split_best = duration;
-		this.timer.save();
-		Actions.get_manager().update_sob();
+
+		// Check if we should auto-save the gold split
+		if (this.prefs.autoGold){
+			this.timer.save();
+			Actions.get_manager().update_sob();
+		}
+
+		this.newGold = true;
 	}
 	
-	//Increase split counter
+	// Increase split counter
 	this.current_split++;
 	
-	if(this.current_split == this.timer.splits.length)
+	// Check if we are done
+	if(this.current_split == this.timer.splits.length){
+		// Check if we should auto-save PB
+		if (this.prefs.autoPB)
+			this.timer.save_splits(this);
+
+		// Stop the run
 		this.stop(false);
+	}
 }
 
 Run.prototype.split_manual = function(split_time)

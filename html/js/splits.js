@@ -206,11 +206,13 @@ Actions.prototype.update = function(set_split_time)
 			else if(rel_split < 0)
 				classes += " ahead";
 			
+			// Check if the split is gold then set the css class to gold
 			if(window.current_timer.splits[window.current_run.current_split].split_best == null || split_time < window.current_timer.splits[window.current_run.current_split].split_best)
 				classes = "time split-gold";
+			// Check if the split is ahead (green)
 			else if(split_time < window.current_timer.splits[window.current_run.current_split].pb_duration)
 				classes += " split-ahead";
-			else
+			else // the split is late (red)
 				classes += " split-late";
 			
 			var rel_human = msec_to_time(difference, 1);
